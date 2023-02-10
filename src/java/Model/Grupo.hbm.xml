@@ -1,0 +1,45 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 6/09/2021 07:08:19 PM by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="Model.Grupo" table="grupo" catalog="canciones" optimistic-lock="version">
+        <id name="idGrupo" type="java.lang.Integer">
+            <column name="idGrupo" />
+            <generator class="identity" />
+        </id>
+        <many-to-one name="disquera" class="Model.Disquera" fetch="select">
+            <column name="idDisquera" />
+        </many-to-one>
+        <property name="nombre" type="string">
+            <column name="Nombre" length="45" />
+        </property>
+        <property name="origen" type="string">
+            <column name="Origen" length="45" />
+        </property>
+        <property name="inicio" type="date">
+            <column name="Inicio" length="10" />
+        </property>
+        <property name="noIntegrantes" type="java.lang.Integer">
+            <column name="NoIntegrantes" />
+        </property>
+        <property name="genero" type="string">
+            <column name="Genero" length="45" />
+        </property>
+        <property name="idioma" type="string">
+            <column name="idioma" length="45" />
+        </property>
+        <set name="albums" table="album" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="idGrupo" />
+            </key>
+            <one-to-many class="Model.Album" />
+        </set>
+        <set name="cancioneses" table="canciones" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="idGrupo" />
+            </key>
+            <one-to-many class="Model.Canciones" />
+        </set>
+    </class>
+</hibernate-mapping>

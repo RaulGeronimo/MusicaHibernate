@@ -1,0 +1,137 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+   xmlns:h="http://xmlns.jcp.org/jsf/html"
+   xmlns:p="http://primefaces.org/ui"
+   xmlns:f="http://xmlns.jcp.org/jsf/core">
+   <h:head>
+      <title>Modificar Disquera</title>
+      <h:outputStylesheet library="css" name="style.css"/>
+      <meta name="Pagina web de Musica" content="width=device-width, initial-scale=1" />
+      <link rel="stylesheet" href="../css/style.css"/>
+      <link rel="shortcut icon" href="../img/IconoPagina.png" type="image/x-icon"/>
+      <!--<link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,700,800&display=swap" rel="stylesheet"/>-->
+   </h:head>
+   <h:body>
+      <header>
+         <nav>
+            <a href="../index.xhtml">Inicio</a>
+            <a href="../Album.xhtml">Album</a>
+            <a href="../Artista.xhtml">Artista</a>
+            <a href="../Canciones.xhtml">Cancion</a>
+            <a href="../Disquera.xhtml">Disquera</a>
+            <a href="../Grupo.xhtml">Grupo</a>
+         </nav>
+         <section class="textos-header">
+            <h1>Biblioteca Musical</h1>
+            <h2>Proyecto Interacción Hombre-Maquina</h2>
+         </section>
+         <div class="wave" style="height: 150px; overflow: hidden;" >
+            <svg viewBox="0 0 500 150" preserveAspectRatio="none" style="height: 100%; width: 100%;">
+               <path d="M0.00,49.98 C149.99,150.00 349.20,-49.98 500.00,49.98 L500.00,150.00 L0.00,150.00 Z" style="stroke: none; fill: #fff ;"></path>
+            </svg>
+         </div>
+      </header>
+      <main>
+         <section>
+            <div>
+               <h:form class="form1" id="formMostrar">
+                  <h2 class="form_title">Modificar Disquera</h2>
+                  <div class="form_container">
+                     <p:dataTable var="per" value="#{disquerasBean.disqueras}"
+                        emptyMessage="No hay registros">
+                        <p:column headerText="ID">
+                           <h:outputText value="#{per.idDisquera}"/>
+                        </p:column>
+                        <p:column headerText="NOMBRE">
+                           <h:outputText value="#{per.nombre}"/>
+                        </p:column>
+                        <p:column headerText="CORREO">
+                           <h:outputText value="#{per.correo}"/>
+                        </p:column>
+                        <p:column headerText="DIRECCIÓN">
+                           <h:outputText value="#{per.direccion}"/>
+                        </p:column>
+                        <p:column headerText="TELEFONO">
+                           <h:outputText value="#{per.telefono}"/>
+                        </p:column>
+                        <p:column headerText="FUNDACIÓN">
+                           <h:outputText value="#{per.fundacion}"/>
+                        </p:column>
+                        <!--Modificar-->
+                        <p:column headerText="EDITAR">
+                           <p:commandButton image="" onclick="PF('dlgModificar').show();"
+                              update=":formModificar">
+                              <f:setPropertyActionListener
+                                 target="#{disquerasBean.disquera}" value="#{per}"/>
+                           </p:commandButton>
+                        </p:column>
+                     </p:dataTable>
+                  </div>
+                  <a href="EliminaDisquera.xhtml" class="form_button1">Eliminar</a>
+               </h:form>
+               <!--Form Modificar-->
+               <p:dialog id="dlg" header="Modificar Disquera"
+                  widgetVar="dlgModificar" modal="true"
+                  resizable="false" minWidth="200">
+                  <h:form id="formModificar">
+                     <!--Nombre-->
+                     <div class="form_group">
+                        <p:outputLabel>Nombre</p:outputLabel>
+                        <p:inputText class="form_input" value="#{disquerasBean.disquera.nombre}" placeholder="Nombre de la Disquera" required="true"/>
+                        <span class="barra"></span>
+                     </div>
+                     <!--Correo-->
+                     <div class="form_group">
+                        <p:outputLabel>Correo Electronico</p:outputLabel>
+                        <p:inputText class="form_input" value="#{disquerasBean.disquera.correo}" placeholder="Correo Electronico de la Disquera" required="true"/>
+                        <span class="barra"></span>
+                     </div>
+                     <!--Direccion-->
+                     <div class="form_group">
+                        <p:outputLabel>Direccion</p:outputLabel>
+                        <p:inputText class="form_input" value="#{disquerasBean.disquera.direccion}" placeholder="Ubicación de la Disquera" required="true"/>
+                        <span class="barra"></span>
+                     </div>
+                     <!--Telefono-->
+                     <div class="form_group">
+                        <p:outputLabel>Telefono</p:outputLabel>
+                        <p:inputText class="form_input" value="#{disquerasBean.disquera.telefono}" placeholder="Telefono de contacto de la disquera" required="true"/>
+                        <span class="barra"></span>
+                     </div>
+                     <!--Fundacion-->
+                     <div class="form_group">
+                        <p:outputLabel value="Fundacion"></p:outputLabel>
+                        <br/>
+                        <p:calendar value="#{disquerasBean.disquera.fundacion}" required="true" placeholder="Fecha de Fundación" size="40"/>
+                     </div>
+                     <!--Boton Modificar-->
+                     <p:commandButton actionListener="#{disquerasBean.modificar()}"
+                        value="Modificar Disquera"
+                        update=":formMostrar" onclick="PF('dlgModificar').hide();">
+                     </p:commandButton>
+                  </h:form>
+               </p:dialog>
+               <a href="../Disquera.xhtml" class="form_button1">Regresar</a>
+            </div>
+         </section>
+      </main>
+      <footer>
+         <div class="contenedor-footer">
+            <div class="content-foo">
+               <h4>Bastida Lemus</h4>
+               <p>Luis Manuel</p>
+            </div>
+            <div class="content-foo">
+               <h4>Gerónimo Herrera</h4>
+               <p>Raúl Gabriel</p>
+            </div>
+            <div class="content-foo">
+               <h4>Rodriguez Cruz</h4>
+               <p>Brian Alejandro</p>
+            </div>
+         </div>
+         <h2 class="titulo-final"> Proyecto | Interacción Hombre-Maquina</h2>
+      </footer>
+   </h:body>
+</html>

@@ -1,0 +1,190 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+   xmlns:h="http://xmlns.jcp.org/jsf/html"
+   xmlns:p="http://primefaces.org/ui"
+   xmlns:f="http://xmlns.jcp.org/jsf/core">
+   <h:head>
+      <title>Modificar Grupo</title>
+      <h:outputStylesheet library="css" name="style.css"/>
+      <meta name="Pagina web de Musica" content="width=device-width, initial-scale=1" />
+      <link rel="stylesheet" href="../css/style.css"/>
+      <link rel="shortcut icon" href="../img/IconoPagina.png" type="image/x-icon"/>
+      <!--<link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,700,800&display=swap" rel="stylesheet"/>-->
+   </h:head>
+   <h:body>
+      <header>
+         <nav>
+            <a href="../index.xhtml">Inicio</a>
+            <a href="../Album.xhtml">Album</a>
+            <a href="../Artista.xhtml">Artista</a>
+            <a href="../Canciones.xhtml">Cancion</a>
+            <a href="../Disquera.xhtml">Disquera</a>
+            <a href="../Grupo.xhtml">Grupo</a>
+         </nav>
+         <section class="textos-header">
+            <h1>Biblioteca Musical</h1>
+            <h2>Proyecto Interacción Hombre-Maquina</h2>
+         </section>
+         <div class="wave" style="height: 150px; overflow: hidden;" >
+            <svg viewBox="0 0 500 150" preserveAspectRatio="none" style="height: 100%; width: 100%;">
+               <path d="M0.00,49.98 C149.99,150.00 349.20,-49.98 500.00,49.98 L500.00,150.00 L0.00,150.00 Z" style="stroke: none; fill: #fff ;"></path>
+            </svg>
+         </div>
+      </header>
+      <main>
+         <section>
+            <div>
+               <h:form class="form1" id="formMostrar">
+                  <h2 class="form_title">Modificar Grupo</h2>
+                  <div class="form_container">
+                     <p:dataTable var="per" value="#{gruposBean.grupos}"
+                        emptyMessage="No hay registros">
+                         <p:column headerText="ID">
+                           <h:outputText value="#{per.idGrupo}"/>
+                        </p:column>
+                        <p:column headerText="ID DISQUERA">
+                           <h:outputText value="#{per.disquera.idDisquera}"/>
+                        </p:column>
+                        <p:column headerText="NOMBRE">
+                            <h:outputText value="#{per.nombre}"/>
+                        </p:column>
+                        <p:column headerText="ORIGEN">
+                            <h:outputText value="#{per.origen}"/>
+                        </p:column>
+                        <p:column headerText="INICIO">
+                           <h:outputText value="#{per.inicio}"/>
+                        </p:column>
+                        <p:column headerText="NUMERO INTEGRANTES">
+                            <h:outputText value="#{per.noIntegrantes}"/>
+                        </p:column>
+                        <p:column headerText="GENERO">
+                           <h:outputText value="#{per.genero}"/>
+                        </p:column>
+                         <p:column headerText="IDIOMA">
+                             <h:outputText value="#{per.idioma}"/>
+                        </p:column>
+                        <!--Modificar-->
+                        <p:column headerText="EDITAR">
+                            <p:commandButton image="" onclick="PF('dlgModificar').show();"
+                              update=":formModificar">
+                              <f:setPropertyActionListener
+                                  target="#{gruposBean.grupo}" value="#{per}"/>
+                           </p:commandButton>
+                        </p:column>
+                     </p:dataTable>
+                  </div>
+                  <a href="EliminaGrupo.xhtml" class="form_button1">Eliminar</a>
+               </h:form>
+               <!--Form Modificar-->
+               <p:dialog id="dlg" header="Modificar Grupo"
+                  widgetVar="dlgModificar" modal="true"
+                  resizable="false" minWidth="200">
+                  <h:form id="formModificar">
+                     <!-- Nombre-->
+                     <div class="form_group">
+                        <p:outputLabel>Nombre</p:outputLabel>
+                        <p:inputText class="form_input"  value="#{gruposBean.grupo.nombre}" placeholder="Nombre del Grupo" required="true"/>
+                        <span class="barra"></span>
+                     </div>
+                     <!--Disquera-->
+                     <div class="form_group">
+                        <p:outputLabel>Disquera</p:outputLabel>
+                        <br/>
+                        <p:selectOneMenu value="#{gruposBean.idGrupo}" required="true" style="width: 100%">
+                           <f:selectItem itemLabel="Selecciona una Disquera" itemDisabled="true"/>
+                           <f:selectItems value="#{disquerasBean.disqueras}" var="clave" itemLabel="#{clave.nombre}" itemValue="#{clave.idDisquera}"/>
+                        </p:selectOneMenu>
+                        <span class="barra"></span>
+                     </div>
+                     <!--Origen-->
+                     <div class="form_group">
+                        <p:outputLabel>Origen</p:outputLabel>
+                        <p:inputText class="form_input" value="#{gruposBean.grupo.origen}" placeholder="Origen" required="true"/>
+                        <span class="barra"></span>
+                     </div>
+                     <!--Inicio-->
+                     <div class="form_group">
+                        <p:outputLabel value="Inicio"></p:outputLabel>
+                        <br/>
+                        <p:calendar value="#{gruposBean.grupo.inicio}" required="true" placeholder="Fecha de Inicio" size="30"/>
+                     </div>
+                     <!--NO. Integrantes-->
+                     <div class="form_group">
+                        <p:outputLabel>Integrantes</p:outputLabel>
+                        <p:inputText class="form_input" value="#{gruposBean.grupo.noIntegrantes}" placeholder="Numero de Integrantes" required="true"/>
+                        <span class="barra"></span>
+                     </div>
+                     <!--Genero-->
+                     <div class="form_group">
+                        <p:outputLabel>Género</p:outputLabel>
+                        <br/>
+                        <p:selectOneMenu value="#{gruposBean.grupo.genero}" required="true" style="width: 100%">
+                           <f:selectItem itemLabel="Selecciona un genero" itemDisabled="true"/>
+                           <f:selectItem itemValue="Alternativo" itemLabel="Alternativo"/>
+                           <f:selectItem itemValue="Blues" itemLabel="Blues"/>
+                           <f:selectItem itemValue="Country" itemLabel="Country"/>
+                           <f:selectItem itemValue="Electrónica" itemLabel="Electrónica"/>
+                           <f:selectItem itemValue="Garage" itemLabel="Garage"/>
+                           <f:selectItem itemValue="Grunge" itemLabel="Grunge"/>
+                           <f:selectItem itemValue="Hadcore punk" itemLabel="Hadcore punk"/>
+                           <f:selectItem itemValue="Hip Hop" itemLabel="Hip Hop"/>
+                           <f:selectItem itemValue="Instrumental" itemLabel="Instrumental"/>
+                           <f:selectItem itemValue="K-Pop" itemLabel="K-Pop"/>
+                           <f:selectItem itemValue="Metal" itemLabel="Metal"/>
+                           <f:selectItem itemValue="Nu Metal" itemLabel="Nu Metal"/>
+                           <f:selectItem itemValue="Pop" itemLabel="Pop"/>
+                           <f:selectItem itemValue="Rap" itemLabel="Rap"/>
+                           <f:selectItem itemValue="Reggae" itemLabel="Reggae"/>
+                           <f:selectItem itemValue="Rhythm and Blues" itemLabel="Rhythm and Blues"/>
+                           <f:selectItem itemValue="Rock" itemLabel="Rock"/>
+                           <f:selectItem itemValue="Rock Alternativo" itemLabel="Rock Alternativo"/>
+                           <f:selectItem itemValue="Salsa" itemLabel="Salsa"/>
+                           <f:selectItem itemValue="Soul" itemLabel="Soul"/>
+                        </p:selectOneMenu>
+                     </div>
+                     <!--Idioma-->
+                     <div class="form_group">
+                        <p:outputLabel>Idioma</p:outputLabel>
+                        <br/>
+                        <p:selectOneMenu value="#{gruposBean.grupo.idioma}" required="true" style="width: 100%">
+                           <f:selectItem itemLabel="Selecciona el Idioma" itemDisabled="true"/>
+                           <f:selectItem itemValue="Alemán" itemLabel="Alemán"/>
+                           <f:selectItem itemValue="Coreano" itemLabel="Coreano"/>
+                           <f:selectItem itemValue="Español" itemLabel="Español"/>
+                           <f:selectItem itemValue="Francés" itemLabel="Francés"/>
+                           <f:selectItem itemValue="Inglés" itemLabel="Inglés"/>
+                           <f:selectItem itemValue="Italiano" itemLabel="Italiano"/>
+                           <f:selectItem itemValue="Latín" itemLabel="Latín"/>
+                        </p:selectOneMenu>
+                     </div>
+                     <!--Boton Modificar-->
+                     <p:commandButton actionListener="#{gruposBean.modificar()}"
+                        value="Modificar Grupo"
+                        update=":formMostrar" onclick="PF('dlgModificar').hide();">
+                     </p:commandButton>
+                  </h:form>
+               </p:dialog>
+               <a href="../Grupo.xhtml" class="form_button1">Regresar</a>
+            </div>
+         </section>
+      </main>
+      <footer>
+         <div class="contenedor-footer">
+            <div class="content-foo">
+               <h4>Bastida Lemus</h4>
+               <p>Luis Manuel</p>
+            </div>
+            <div class="content-foo">
+               <h4>Gerónimo Herrera</h4>
+               <p>Raúl Gabriel</p>
+            </div>
+            <div class="content-foo">
+               <h4>Rodriguez Cruz</h4>
+               <p>Brian Alejandro</p>
+            </div>
+         </div>
+         <h2 class="titulo-final"> Proyecto | Interacción Hombre-Maquina</h2>
+      </footer>
+   </h:body>
+</html>

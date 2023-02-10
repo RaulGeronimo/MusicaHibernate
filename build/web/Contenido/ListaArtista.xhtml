@@ -1,0 +1,124 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+   xmlns:h="http://java.sun.com/jsf/html"
+   xmlns:f="http://java.sun.com/jsf/core"
+   xmlns:ui="http://java.sun.com/jsf/facelets"
+   xmlns:p="http://primefaces.org/ui">
+   <h:head>
+      <title>Lista Artista</title>
+      <h:outputStylesheet library="css" name="style.css"/>
+      <meta name="Pagina web de Musica" content="width=device-width, initial-scale=1" />
+      <link rel="stylesheet" href="../css/style.css"/>
+      <link rel="shortcut icon" href="../img/IconoPagina.png" type="image/x-icon"/>
+      <!--<link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,700,800&display=swap" rel="stylesheet"/>-->
+   </h:head>
+   <h:body>
+      <header>
+         <nav>
+            <a href="../index.xhtml">Inicio</a>
+            <a href="../Album.xhtml">Album</a>
+            <a href="../Artista.xhtml">Artista</a>
+            <a href="../Canciones.xhtml">Cancion</a>
+            <a href="../Disquera.xhtml">Disquera</a>
+            <a href="../Grupo.xhtml">Grupo</a>
+         </nav>
+         <section class="textos-header">
+            <h1>Biblioteca Musical</h1>
+            <h2>Proyecto Interacción Hombre-Maquina</h2>
+         </section>
+         <div class="wave" style="height: 150px; overflow: hidden;" >
+            <svg viewBox="0 0 500 150" preserveAspectRatio="none" style="height: 100%; width: 100%;">
+               <path d="M0.00,49.98 C149.99,150.00 349.20,-49.98 500.00,49.98 L500.00,150.00 L0.00,150.00 Z" style="stroke: none; fill: #fff ;"></path>
+            </svg>
+            </div>
+      </header>
+      <main>
+         <section>
+            <div>
+               <h:form class="form1">
+                  <h2 class="form_title">Lista Artistas</h2>
+                  <!-- <p class="descripcion">Formato a Exportar</p> -->
+                  <!--Excel-->
+                  <h:commandLink>
+                     <p:graphicImage value="../img/excel.png" width="40"/>
+                     <p:dataExporter type="xls" target="Tabla" fileName="Artistas"/>
+                  </h:commandLink>
+                  <!--PDF-->
+                  <h:commandLink>
+                     <p:graphicImage value="../img/pdf.png" width="40"/>
+                     <p:dataExporter type="pdf" target="Tabla" fileName="Artistas"/>
+                  </h:commandLink>
+                  <!--CSV-->
+                  <h:commandLink>
+                     <p:graphicImage value="../img/csv.png" width="40"/>
+                     <p:dataExporter type="csv" target="Tabla" fileName="Artistas"/>
+                  </h:commandLink>
+                  <!--XML-->
+                  <h:commandLink>
+                     <p:graphicImage value="../img/xml.png" width="40"/>
+                     <p:dataExporter type="xml" target="Tabla" fileName="Artistas"/>
+                  </h:commandLink>
+                  <div class="form_container">
+                     <p:dataTable id="Tabla" var="per" value="#{artistasBean.artistas}"
+                        emptyMessage="No hay registros">
+                        <p:column headerText="ID">
+                           <h:outputText value="#{per.idArtista}"/>
+                        </p:column>
+                        <p:column headerText="NOMBRE">
+                           <h:outputText value="#{per.nombre}"/>
+                        </p:column>
+                        <p:column headerText="PATERNO">
+                           <h:outputText value="#{per.apellidoP}"/>
+                        </p:column>
+                        <p:column headerText="MATERNO">
+                           <h:outputText value="#{per.apellidoM}"/>
+                        </p:column>
+                        <p:column headerText="NOMBRE ARTISTICO">
+                           <h:outputText value="#{per.nombreArtistico}"/>
+                        </p:column>
+                        <p:column headerText="EDAD">
+                           <h:outputText value="#{per.edad}"/>
+                        </p:column>
+                        <p:column headerText="GENERO">
+                           <h:outputText value="#{per.genero}"/>
+                        </p:column>
+                        <p:column headerText="NACIMIENTO">
+                           <h:outputText value="#{per.fechaNacimiento}"/>
+                        </p:column>
+                        <p:column headerText="PAÍS">
+                           <h:outputText value="#{per.pais}"/>
+                        </p:column>
+                        <p:column headerText="INSTRUMENO">
+                           <h:outputText value="#{per.instrumento}"/>
+                        </p:column>
+                        <p:column headerText="ESTATURA">
+                           <h:outputText value="#{per.estatura}"/>
+                        </p:column>
+                     </p:dataTable>
+                  </div>
+                  <a href="BuscaArtista.xhtml" class="form_button1">Buscar</a>
+               </h:form>
+               <a href="../Artista.xhtml" class="form_button1">Regresar</a>
+            </div>
+         </section>
+      </main>
+      <footer>
+         <div class="contenedor-footer">
+            <div class="content-foo">
+               <h4>Bastida Lemus</h4>
+               <p>Luis Manuel</p>
+            </div>
+            <div class="content-foo">
+               <h4>Gerónimo Herrera</h4>
+               <p>Raúl Gabriel</p>
+            </div>
+            <div class="content-foo">
+               <h4>Rodriguez Cruz</h4>
+               <p>Brian Alejandro</p>
+            </div>
+         </div>
+         <h2 class="titulo-final"> Proyecto | Interacción Hombre-Maquina</h2>
+      </footer>
+   </h:body>
+</html>

@@ -1,0 +1,190 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+   xmlns:p="http://primefaces.org/ui">
+   <head>
+      <title>Repertorio de Musica</title>
+      <meta name="Pagina web de Musica" content="width=device-width, initial-scale=1" />
+      <link rel="stylesheet" href="css/style.css"/>
+      <link rel="shortcut icon" href="img/IconoPagina.png" type="image/x-icon"/>
+      <!--<link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,700,800&display=swap" rel="stylesheet"/>-->
+   </head>
+   <body>
+      <header>
+         <nav>
+            <a href="">Inicio</a>
+            <a href="Album.xhtml">Album</a>
+            <a href="Artista.xhtml">Artista</a>
+            <a href="Canciones.xhtml">Cancion</a>
+            <a href="Disquera.xhtml">Disquera</a>
+            <a href="Grupo.xhtml">Grupo</a>
+         </nav>
+         <section class="textos-header">
+            <h1>Biblioteca Musical</h1>
+            <h2>Proyecto Interacción Hombre-Maquina</h2>
+         </section>
+         <!--Forma para la cabecera de la pag, sale de la pag: https://smooth.ie/blogs/news/svg-wavey-transitions-between-sections-->
+         <div class="wave" style="height: 150px; overflow: hidden;" >
+            <svg viewBox="0 0 500 150" preserveAspectRatio="none" style="height: 100%; width: 100%;">
+               <path d="M0.00,49.98 C149.99,150.00 349.20,-49.98 500.00,49.98 L500.00,150.00 L0.00,150.00 Z" style="stroke: none; fill: #fff;"></path>
+            </svg>
+         </div>
+      </header>
+      <main>
+         <section class="contenedor sobre-nosotros">
+            <h2 class="titulo">Acerca del Proyecto</h2>
+            <div class="contenedor-sobre-nosotros">
+               <img src="img/Acerca.jpg" class="imagen-about-us"/>
+               <div class="contenido-textos">
+                  <h3><span>1</span>Insertar Registros</h3>
+                  <p>Este sitio web va a registrar datos en una base de Datos que contiene 5 tablas, los cuales son: Album, Artista, Canciones, Disquera y Grupo.</p>
+                  <h3><span>2</span>Mostrar Listas</h3>
+                  <p>Este sitio web mostrara todos los registros insertados en la Base de Datos en forma de lista, asimismo se podrán realizar cambios en los registros de cada una de las tablas, o en su defecto se eliminará el Registro. También se podrá realizar la búsqueda de los registros, así como la exportación en distintos formatos, los cuales son: Excel, PDF, CSV.</p>
+               </div>
+            </div>
+         </section>
+
+         <section class="portafolio">
+            <div class="contenedor">
+               <h2 class="titulo">Acciones</h2>
+               <p class="descripcion">Todos estos son las Acciones que se podrán realizar.</p>
+               <div class="galeria-port">
+                  <div class="imagen-port">
+                     <img src="img/Albums.jpg"/>
+                     <div class="hover-galeria">
+                        <a href="Acciones/Insertar.xhtml">
+                        <img src="img/icono1.png" alt=""/>
+                        </a>
+                        <p>Insertar</p>
+                     </div>
+                  </div>
+                  <div class="imagen-port">
+                     <img src="img/Grupos.jpg"/>
+                     <div class="hover-galeria">
+                        <a href="Acciones/Modificar.xhtml">
+                        <img src="img/icono1.png" alt=""/>
+                        </a>
+                        <p>Modificar</p>
+                     </div>
+                  </div>
+                  <div class="imagen-port">
+                     <img src="img/Canciones.jpg"/>
+                     <div class="hover-galeria">
+                        <a href="Acciones/Eliminar.xhtml">
+                        <img src="img/icono1.png" alt=""/>
+                        </a>
+                        <p>Eliminar</p>
+                     </div>
+                  </div>
+                  <div class="imagen-port">
+                     <img src="img/Disquera.jpg"/>
+                     <div class="hover-galeria">
+                        <a href="Acciones/Lista.xhtml">
+                        <img src="img/icono1.png" alt=""/>
+                        </a>
+                        <p>Lista</p>
+                     </div>
+                  </div>
+                  <div class="imagen-port">
+                     <img src="img/Buscar.jpg"/>
+                     <div class="hover-galeria">
+                        <a href="Acciones/Buscar.xhtml">
+                        <img src="img/icono1.png" alt=""/>
+                        </a>
+                        <p>Buscar</p>
+                     </div>
+                  </div>
+               </div>
+            </div>
+         </section>
+         
+         <section class="clientes contenedor">
+            <div class="contenedor">
+               <h2 class="titulo">Contenido</h2>
+               <p class="descripcion">Todos estos son los apartados para el registro de Datos.</p>
+               <div class="servicio-cont">
+                  <div class="servicio-ind">
+                     <a href="Album.xhtml"><img src="img/IconoAlbum.png" alt=""/></a>
+                     <h3>Albums</h3>
+                     <p>En este apartado se encuentran todos los albumes de los grupos o de los cantantes.</p>
+                  </div>
+                  <div class="servicio-ind">
+                     <a href="Artista.xhtml"><img src="img/IconoArtista.png" alt=""/></a>
+                     <h3>Artistas</h3>
+                     <p>Aqui se encuentran todos los artistas que esten registrados en la Base de Datos.</p>
+                  </div>
+                  <div class="servicio-ind">
+                     <a href="Canciones.xhtml"><img src="img/IconoCanciones.png" alt=""/></a>
+                     <h3>Canciones</h3>
+                     <p>En este apartado se encuentran las canciones que han sacado los grupos o cantantes.</p>
+                  </div>
+               </div>
+               <div class="servicio-cont">
+                  <div class="servicio-ind">
+                     <a href="Disquera.xhtml"><img src="img/IconoDisquera.png" alt=""/></a>
+                     <h3>Disqueras</h3>
+                     <p>En este apartado estan las disqueras con las que han trabajado los grupos o los solistas.</p>
+                  </div>
+                  <div class="servicio-ind">
+                     <a href="Grupo.xhtml"><img src="img/IconoGrupo.png" alt=""/></a>
+                     <h3>Grupos</h3>
+                     <p>Estos son los grupos o cada uno de los solistas.</p>
+                  </div>
+               </div>
+            </div>
+         </section>
+
+         <!--<section class="clientes contenedor">
+            <div class="contenedor">
+               <h2 class="titulo">Contenido</h2>
+               <p class="descripcion">Todos estos son los apartados para el registro de Datos.</p>
+               <div class="servicio-cont">
+                  <div class="servicio-ind">
+                     <a href="Album.xhtml"><img src="img/IconoAlbum.png" alt=""/></a>
+                     <h3>Albums</h3>
+                     <p></p>
+                  </div>
+                  <div class="servicio-ind">
+                     <a href="Artista.xhtml"><img src="img/IconoArtista.png" alt=""/></a>
+                     <h3>Artistas</h3>
+                     <p></p>
+                  </div>
+                  <div class="servicio-ind">
+                     <a href="Canciones.xhtml"><img src="img/IconoCanciones.png" alt=""/></a>
+                     <h3>Canciones</h3>
+                     <p></p>
+                  </div>
+                  <div class="servicio-ind">
+                     <a href="Disquera.xhtml"><img src="img/IconoDisquera.png" alt=""/></a>
+                     <h3>Disqueras</h3>
+                     <p></p>
+                  </div>
+                  <div class="servicio-ind">
+                     <a href="Grupo.xhtml"><img src="img/IconoGrupo.png" alt=""/></a>
+                     <h3>Grupos</h3>
+                     <p></p>
+                  </div>
+               </div>
+            </div>
+         </section>-->
+
+      </main>
+      <footer>
+         <div class="contenedor-footer">
+            <div class="content-foo">
+               <h4>Bastida Lemus</h4>
+               <p>Luis Manuel</p>
+            </div>
+            <div class="content-foo">
+               <h4>Gerónimo Herrera</h4>
+               <p>Raúl Gabriel</p>
+            </div>
+            <div class="content-foo">
+               <h4>Rodriguez Cruz</h4>
+               <p>Brian Alejandro</p>
+            </div>
+         </div>
+         <h2 class="titulo-final"> Proyecto | Interacción Hombre-Maquina</h2>
+      </footer>
+   </body>
+</html>

@@ -1,0 +1,181 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+   xmlns:h="http://xmlns.jcp.org/jsf/html"
+   xmlns:p="http://primefaces.org/ui"
+   xmlns:f="http://xmlns.jcp.org/jsf/core">
+   <h:head>
+      <title>Modificar Album</title>
+      <h:outputStylesheet library="css" name="style.css"/>
+      <meta name="Pagina web de Musica" content="width=device-width, initial-scale=1" />
+      <link rel="stylesheet" href="../css/style.css"/>
+      <link rel="shortcut icon" href="../img/IconoPagina.png" type="image/x-icon"/>
+      <!--<link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,700,800&display=swap" rel="stylesheet"/>-->
+   </h:head>
+   <h:body>
+      <header>
+         <nav>
+            <a href="../index.xhtml">Inicio</a>
+            <a href="../Album.xhtml">Album</a>
+            <a href="../Artista.xhtml">Artista</a>
+            <a href="../Canciones.xhtml">Cancion</a>
+            <a href="../Disquera.xhtml">Disquera</a>
+            <a href="../Grupo.xhtml">Grupo</a>
+         </nav>
+         <section class="textos-header">
+            <h1>Biblioteca Musical</h1>
+            <h2>Proyecto Interacción Hombre-Maquina</h2>
+         </section>
+         <div class="wave" style="height: 150px; overflow: hidden;" >
+            <svg viewBox="0 0 500 150" preserveAspectRatio="none" style="height: 100%; width: 100%;">
+               <path d="M0.00,49.98 C149.99,150.00 349.20,-49.98 500.00,49.98 L500.00,150.00 L0.00,150.00 Z" style="stroke: none; fill: #fff ;"></path>
+            </svg>
+         </div>
+      </header>
+      <main>
+         <section>
+            <div>
+               <h:form class="form1" id="formMostrar">
+                  <h2 class="form_title">Modificar Albums</h2>
+                  <div class="form_container">
+                     <p:dataTable var="per" value="#{albumsBean.albums}"
+                        emptyMessage="No hay registros">
+                        <p:column headerText="ID">
+                           <h:outputText value="#{per.idAlbum}"/>
+                        </p:column>
+                        <p:column headerText="ID GRUPO">
+                           <h:outputText value="#{per.grupo.idGrupo}"/>
+                        </p:column>
+                        <p:column headerText="NOMBRE">
+                           <h:outputText value="#{per.nombre}"/>
+                        </p:column>
+                        <p:column headerText="No. CANCIONES">
+                           <h:outputText value="#{per.noCanciones}"/>
+                        </p:column>
+                        <p:column headerText="DURACIÓN">
+                           <h:outputText value="#{per.duracion}"/>
+                        </p:column>
+                        <p:column headerText="LANZAMIENTO">
+                           <h:outputText value="#{per.lanzamiento}"/>
+                        </p:column>
+                        <p:column headerText="VENTAS">
+                           <h:outputText value="#{per.noVentas}"/>
+                        </p:column>
+                        <p:column headerText="GENERO">
+                           <h:outputText value="#{per.genero}"/>
+                        </p:column>
+                        <!--Modificar-->
+                        <p:column headerText="EDITAR">
+                            <p:commandButton image="" onclick="PF('dlgModificar').show();"
+                              update=":formModificar">
+                              <f:setPropertyActionListener
+                                 target="#{albumsBean.album}" value="#{per}"/>
+                           </p:commandButton>
+                        </p:column>
+                     </p:dataTable>
+                  </div>
+                  <a href="EliminaAlbum.xhtml" class="form_button1">Eliminar</a>
+               </h:form>
+               <!--Form Modificar-->
+               <p:dialog id="dlg" header="Modificar Album"
+                  widgetVar="dlgModificar" modal="true"
+                  resizable="false" minWidth="200">
+                  <h:form id="formModificar">
+                     <!--Nombre-->
+                     <div class="form_group">
+                        <p:outputLabel>Nombre</p:outputLabel>
+                        <p:inputText class="form_input"  value="#{albumsBean.album.nombre}" placeholder="Nombre del Album" required="true"/>
+                        <span class="barra"></span>
+                     </div>
+                     <!--Grupo-->
+                     <div class="form_group">
+                        <p:outputLabel>Grupo</p:outputLabel>
+                        <br/>
+                        <p:selectOneMenu value="#{albumsBean.clave}" required="true" style="width: 100%">
+                           <f:selectItem itemLabel="Selecciona un Grupo" itemDisabled="true"/>
+                           <f:selectItems value="#{gruposBean.grupos}" var="clave" itemLabel="#{clave.nombre}" itemValue="#{clave.idGrupo}"/>
+                        </p:selectOneMenu>
+                        <span class="barra"></span>
+                     </div>
+                     <!--Canciones-->
+                     <div class="form_group">
+                        <p:outputLabel>Número de Canciones</p:outputLabel>
+                        <p:inputText class="form_input"  value="#{albumsBean.album.noCanciones}" placeholder="Número de Canciones" required="true"/>
+                        <span class="barra"></span>
+                     </div>
+                     <!--Duracion-->
+                     <div class="form_group">
+                        <p:outputLabel>Duración</p:outputLabel>
+                        <br/>
+                        <p:calendar id="time" pattern="HH:mm:ss" timeOnly="true" value="#{albumsBean.album.duracion}" required="true" placeholder="Duración del Album" size="40"/>
+                     </div>
+                     <!--Lanzamiento-->
+                     <div class="form_group">
+                        <p:outputLabel>Fecha de Lanzamiento</p:outputLabel>
+                        <br/>
+                        <p:calendar value="#{albumsBean.album.lanzamiento}" required="true" placeholder="Lanzamiento del album" size="40"/>
+                     </div>
+                     <!--Genero-->
+                     <div class="form_group">
+                        <p:outputLabel>Género</p:outputLabel>
+                        <br/>
+                        <p:selectOneMenu value="#{albumsBean.album.genero}" required="true" style="width: 100%">
+                           <f:selectItem itemLabel="Selecciona un genero" itemDisabled="true"/>
+                           <f:selectItem itemValue="Alternativo" itemLabel="Alternativo"/>
+                           <f:selectItem itemValue="Blues" itemLabel="Blues"/>
+                           <f:selectItem itemValue="Country" itemLabel="Country"/>
+                           <f:selectItem itemValue="Electrónica" itemLabel="Electrónica"/>
+                           <f:selectItem itemValue="Garage" itemLabel="Garage"/>
+                           <f:selectItem itemValue="Grunge" itemLabel="Grunge"/>
+                           <f:selectItem itemValue="Hadcore punk" itemLabel="Hadcore punk"/>
+                           <f:selectItem itemValue="Hip Hop" itemLabel="Hip Hop"/>
+                           <f:selectItem itemValue="Instrumental" itemLabel="Instrumental"/>
+                           <f:selectItem itemValue="K-Pop" itemLabel="K-Pop"/>
+                           <f:selectItem itemValue="Metal" itemLabel="Metal"/>
+                           <f:selectItem itemValue="Nu Metal" itemLabel="Nu Metal"/>
+                           <f:selectItem itemValue="Pop" itemLabel="Pop"/>
+                           <f:selectItem itemValue="Rap" itemLabel="Rap"/>
+                           <f:selectItem itemValue="Reggae" itemLabel="Reggae"/>
+                           <f:selectItem itemValue="Rhythm and Blues" itemLabel="Rhythm and Blues"/>
+                           <f:selectItem itemValue="Rock" itemLabel="Rock"/>
+                           <f:selectItem itemValue="Rock Alternativo" itemLabel="Rock Alternativo"/>
+                           <f:selectItem itemValue="Salsa" itemLabel="Salsa"/>
+                           <f:selectItem itemValue="Soul" itemLabel="Soul"/>
+                        </p:selectOneMenu>
+                     </div>
+                     <!--Ventas-->
+                     <div class="form_group">
+                        <p:outputLabel>Número de Ventas</p:outputLabel>
+                        <p:inputText class="form_input"  value="#{albumsBean.album.noVentas}" placeholder="Número de Ventas" required="true"/>
+                        <span class="barra"></span>
+                     </div>
+                     <!--Boton Modificar-->
+                     <p:commandButton actionListener="#{albumsBean.modificar()}"
+                        value="Modificar Album"
+                        update=":formMostrar" onclick="PF('dlgModificar').hide();">
+                     </p:commandButton>
+                  </h:form>
+               </p:dialog>
+               <a href="../Album.xhtml" class="form_button1">Regresar</a>
+            </div>
+         </section>
+      </main>
+      <footer>
+         <div class="contenedor-footer">
+            <div class="content-foo">
+               <h4>Bastida Lemus</h4>
+               <p>Luis Manuel</p>
+            </div>
+            <div class="content-foo">
+               <h4>Gerónimo Herrera</h4>
+               <p>Raúl Gabriel</p>
+            </div>
+            <div class="content-foo">
+               <h4>Rodriguez Cruz</h4>
+               <p>Brian Alejandro</p>
+            </div>
+         </div>
+         <h2 class="titulo-final"> Proyecto | Interacción Hombre-Maquina</h2>
+      </footer>
+   </h:body>
+</html>

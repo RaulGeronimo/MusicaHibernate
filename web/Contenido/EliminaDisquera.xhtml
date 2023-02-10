@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+   xmlns:h="http://xmlns.jcp.org/jsf/html"
+   xmlns:p="http://primefaces.org/ui"
+   xmlns:f="http://xmlns.jcp.org/jsf/core">
+   <h:head>
+      <title>Eliminar Disquera</title>
+      <h:outputStylesheet library="css" name="style.css"/>
+      <meta name="Pagina web de Musica" content="width=device-width, initial-scale=1" />
+      <link rel="stylesheet" href="../css/style.css"/>
+      <link rel="shortcut icon" href="../img/IconoPagina.png" type="image/x-icon"/>
+      <!--<link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,700,800&display=swap" rel="stylesheet"/>-->
+   </h:head>
+   <h:body>
+      <header>
+         <nav>
+            <a href="../index.xhtml">Inicio</a>
+            <a href="../Album.xhtml">Album</a>
+            <a href="../Artista.xhtml">Artista</a>
+            <a href="../Canciones.xhtml">Cancion</a>
+            <a href="../Disquera.xhtml">Disquera</a>
+            <a href="../Grupo.xhtml">Grupo</a>
+         </nav>
+         <section class="textos-header">
+            <h1>Biblioteca Musical</h1>
+            <h2>Proyecto Interacción Hombre-Maquina</h2>
+         </section>
+         <div class="wave" style="height: 150px; overflow: hidden;" >
+            <svg viewBox="0 0 500 150" preserveAspectRatio="none" style="height: 100%; width: 100%;">
+               <path d="M0.00,49.98 C149.99,150.00 349.20,-49.98 500.00,49.98 L500.00,150.00 L0.00,150.00 Z" style="stroke: none; fill: #fff ;"></path>
+            </svg>
+         </div>
+      </header>
+      <main>
+         <section>
+            <div>
+               <h:form class="form1" id="formMostrar">
+                  <h2 class="form_title">Eliminar Disquera</h2>
+                  <div class="form_container">
+                     <p:dataTable var="per" value="#{disquerasBean.disqueras}"
+                        emptyMessage="No hay registros">
+                      <p:column headerText="ID">
+                           <h:outputText value="#{per.idDisquera}"/>
+                        </p:column>
+                        <p:column headerText="NOMBRE">
+                           <h:outputText value="#{per.nombre}"/>
+                        </p:column>
+                        <p:column headerText="CORREO">
+                           <h:outputText value="#{per.correo}"/>
+                        </p:column>
+                        <p:column headerText="DIRECCIÓN">
+                           <h:outputText value="#{per.direccion}"/>
+                        </p:column>
+                        <p:column headerText="TELEFONO">
+                           <h:outputText value="#{per.telefono}"/>
+                        </p:column>
+                        <p:column headerText="FUNDACIÓN">
+                           <h:outputText value="#{per.fundacion}"/>
+                        </p:column>
+                        <!--Eliminar-->
+                        <p:column headerText="ELIMINAR" exportable="false">
+                           <p:commandButton image="" onclick="PF('dlgEliminar').show();">
+                              <f:setPropertyActionListener
+                                  target="#{disquerasBean.disquera}"
+                                 value="#{per}"/>
+                           </p:commandButton>
+                        </p:column>
+                     </p:dataTable>
+                  </div>
+                  <a href="ModificaDisquera.xhtml" class="form_button1">Modificar</a>
+               </h:form>
+               <!--Form Modificar-->
+               <p:dialog id="dlg2" header="Eliminar Disquera"
+                  widgetVar="dlgEliminar" modal="true"
+                  resizable="false" minWidth="200">
+                  <h:form id="formEliminar">
+                     <p:outputLabel value="¿Desea eliminar el registro?"/>
+                     <p:commandButton actionListener="#{disquerasBean.eliminar()}"
+                        value="Si" update=":formMostrar"
+                        onclick="PF('dlgEliminar').hide();"/>
+                     <p:commandButton value="No" onclick="PF(dlg2).hide();"/>
+                  </h:form>
+               </p:dialog>
+               <a href="../Disquera.xhtml" class="form_button1">Regresar</a>
+            </div>
+         </section>
+      </main>
+      <footer>
+         <div class="contenedor-footer">
+            <div class="content-foo">
+               <h4>Bastida Lemus</h4>
+               <p>Luis Manuel</p>
+            </div>
+            <div class="content-foo">
+               <h4>Gerónimo Herrera</h4>
+               <p>Raúl Gabriel</p>
+            </div>
+            <div class="content-foo">
+               <h4>Rodriguez Cruz</h4>
+               <p>Brian Alejandro</p>
+            </div>
+         </div>
+         <h2 class="titulo-final"> Proyecto | Interacción Hombre-Maquina</h2>
+      </footer>
+   </h:body>
+</html>

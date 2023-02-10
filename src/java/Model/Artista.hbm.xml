@@ -1,0 +1,48 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 6/09/2021 07:08:19 PM by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="Model.Artista" table="artista" catalog="canciones" optimistic-lock="version">
+        <id name="idArtista" type="java.lang.Integer">
+            <column name="idArtista" />
+            <generator class="identity" />
+        </id>
+        <property name="nombre" type="string">
+            <column name="Nombre" length="45" />
+        </property>
+        <property name="apellidoP" type="string">
+            <column name="ApellidoP" length="45" />
+        </property>
+        <property name="apellidoM" type="string">
+            <column name="ApellidoM" length="45" />
+        </property>
+        <property name="nombreArtistico" type="string">
+            <column name="NombreArtistico" length="45" />
+        </property>
+        <property name="edad" type="java.lang.Integer">
+            <column name="Edad" />
+        </property>
+        <property name="genero" type="java.lang.Character">
+            <column name="Genero" length="1" />
+        </property>
+        <property name="fechaNacimiento" type="date">
+            <column name="FechaNacimiento" length="10" />
+        </property>
+        <property name="pais" type="string">
+            <column name="Pais" length="45" />
+        </property>
+        <property name="instrumento" type="string">
+            <column name="Instrumento" length="45" />
+        </property>
+        <property name="estatura" type="java.lang.Double">
+            <column name="Estatura" precision="22" scale="0" />
+        </property>
+        <set name="cancioneses" table="canciones" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="idInterprete" />
+            </key>
+            <one-to-many class="Model.Canciones" />
+        </set>
+    </class>
+</hibernate-mapping>

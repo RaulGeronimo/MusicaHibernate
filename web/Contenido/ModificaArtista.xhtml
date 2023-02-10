@@ -1,0 +1,240 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+   xmlns:h="http://xmlns.jcp.org/jsf/html"
+   xmlns:p="http://primefaces.org/ui"
+   xmlns:f="http://xmlns.jcp.org/jsf/core">
+   <h:head>
+      <title>Modificar Artista</title>
+      <h:outputStylesheet library="css" name="style.css"/>
+      <meta name="Pagina web de Musica" content="width=device-width, initial-scale=1" />
+      <link rel="stylesheet" href="../css/style.css"/>
+      <link rel="shortcut icon" href="../img/IconoPagina.png" type="image/x-icon"/>
+      <!--<link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,700,800&display=swap" rel="stylesheet"/>-->
+   </h:head>
+   <h:body>
+      <header>
+         <nav>
+            <a href="../index.xhtml">Inicio</a>
+            <a href="../Album.xhtml">Album</a>
+            <a href="../Artista.xhtml">Artista</a>
+            <a href="../Canciones.xhtml">Cancion</a>
+            <a href="../Disquera.xhtml">Disquera</a>
+            <a href="../Grupo.xhtml">Grupo</a>
+         </nav>
+         <section class="textos-header">
+            <h1>Biblioteca Musical</h1>
+            <h2>Proyecto Interacción Hombre-Maquina</h2>
+         </section>
+         <div class="wave" style="height: 150px; overflow: hidden;" >
+            <svg viewBox="0 0 500 150" preserveAspectRatio="none" style="height: 100%; width: 100%;">
+               <path d="M0.00,49.98 C149.99,150.00 349.20,-49.98 500.00,49.98 L500.00,150.00 L0.00,150.00 Z" style="stroke: none; fill: #fff ;"></path>
+            </svg>
+         </div>
+      </header>
+      <main>
+         <section>
+            <div>
+               <h:form class="form1" id="formMostrar">
+                  <h2 class="form_title">Modificar Artista</h2>
+                  <div class="form_container">
+                      <p:dataTable var="per" value="#{artistasBean.artistas}"
+                        emptyMessage="No hay registros">
+                        <p:column headerText="ID">
+                            <h:outputText value="#{per.idArtista}"/>
+                        </p:column>
+                        <p:column headerText="NOMBRE">
+                            <h:outputText value="#{per.nombre}"/>
+                        </p:column>
+                        <p:column headerText="PATERNO">
+                            <h:outputText value="#{per.apellidoP}"/>
+                        </p:column>
+                        <p:column headerText="MATERNO">
+                            <h:outputText value="#{per.apellidoM}"/>
+                        </p:column>
+                        <p:column headerText="NOMBRE ARTISTICO">
+                            <h:outputText value="#{per.nombreArtistico}"/>
+                        </p:column>
+                        <p:column headerText="EDAD">
+                            <h:outputText value="#{per.edad}"/>
+                        </p:column>
+                        <p:column headerText="GENERO">
+                            <h:outputText value="#{per.genero}"/>
+                        </p:column>
+                        <p:column headerText="NACIMIENTO">
+                            <h:outputText value="#{per.fechaNacimiento}"/>
+                        </p:column>
+                        <p:column headerText="PAÍS">
+                            <h:outputText value="#{per.pais}"/>
+                        </p:column>
+                        <p:column headerText="INSTRUMENTO">
+                            <h:outputText value="#{per.instrumento}"/>
+                        </p:column>
+                        <p:column headerText="ESTATURA">
+                            <h:outputText value="#{per.estatura}"/>
+                        </p:column>
+                        <!--Modificar-->
+                        <p:column headerText="EDITAR">
+                            <p:commandButton image="" onclick="PF('dlgModificar').show();"
+                              update=":formModificar">
+                              <f:setPropertyActionListener
+                                  target="#{artistasBean.artista}" value="#{per}"/>
+                           </p:commandButton>
+                        </p:column>
+                     </p:dataTable>
+                  </div>
+                  <a href="EliminaArtista.xhtml" class="form_button1">Eliminar</a>
+               </h:form>
+               <!--Form Modificar-->
+               <p:dialog id="dlg" header="Modificar Artista"
+                  widgetVar="dlgModificar" modal="true"
+                  resizable="false" minWidth="200">
+                  <h:form id="formModificar">
+                     <div class="form_group">
+                        <p:outputLabel>Nombre</p:outputLabel>
+                        <p:inputText class="form_input"  value="#{artistasBean.artista.nombre}" placeholder="Nombre" required="true"/>
+                        <span class="barra"></span>
+                     </div>
+                     <!--Apellido Paterno-->
+                     <div class="form_group">
+                        <p:outputLabel>Apellido Paterno</p:outputLabel>
+                        <p:inputText class="form_input"  value="#{artistasBean.artista.apellidoP}" placeholder="Apellido Paterno" required="true"/>
+                        <span class="barra"></span>
+                     </div>
+                     <!--Apellido Materno-->
+                     <div class="form_group">
+                        <p:outputLabel>Apellido Materno</p:outputLabel>
+                        <p:inputText class="form_input"  value="#{artistasBean.artista.apellidoM}" placeholder="Apellido Materno" required="true"/>
+                        <span class="barra"></span>
+                     </div>
+                     <!--Nombre Artistico-->
+                     <div class="form_group">
+                        <p:outputLabel>Nombre Artístico</p:outputLabel>
+                        <p:inputText class="form_input"  value="#{artistasBean.artista.nombreArtistico}" placeholder="Nombre Artistico" required="true"/>
+                        <span class="barra"></span>
+                     </div>
+                     <!--Edad-->
+                     <div class="form_group">
+                        <p:outputLabel>Edad</p:outputLabel>
+                        <p:inputText class="form_input"  value="#{artistasBean.artista.edad}" placeholder="Edad" required="true"/>
+                        <span class="barra"></span>
+                     </div>
+                     <!--Genero-->
+                     <div class="form_group">
+                        <p:outputLabel>Género</p:outputLabel>
+                        <br/>
+                        <p:selectOneMenu value="#{artistasBean.artista.genero}" required="true" style="width: 100%">
+                           <f:selectItem itemLabel="Selecciona un genero" itemDisabled="true"/>
+                           <f:selectItem itemValue="M" itemLabel="Masculino"/>
+                           <f:selectItem itemValue="F" itemLabel="Femenino"/>
+                        </p:selectOneMenu>
+                     </div>
+                     <!--Fecha Nacimiento-->
+                     <div class="form_group">
+                        <p:outputLabel>Fecha de Nacimiento</p:outputLabel>
+                        <br/>
+                        <p:calendar value="#{artistasBean.artista.fechaNacimiento}" required="true" placeholder="Fecha de Nacimiento" size="30"/>
+                     </div>
+                     <!--Pais-->
+                     <div class="form_group">
+                        <p:outputLabel>País</p:outputLabel>
+                        <br/>
+                        <p:selectOneMenu value="#{artistasBean.artista.pais}" required="true" style="width: 100%">
+                           <f:selectItem itemLabel="Selecciona el Pais de Origen" itemDisabled="true"/>
+                           <f:selectItem itemValue="Alemania" itemLabel="Alemania"/>
+                           <f:selectItem itemValue="Argentina" itemLabel="Argentina"/>
+                           <f:selectItem itemValue="Australia" itemLabel="Australia"/>
+                           <f:selectItem itemValue="Austria" itemLabel="Austria"/>
+                           <f:selectItem itemValue="Bélgica" itemLabel="Bélgica"/>
+                           <f:selectItem itemValue="Bielorrusia" itemLabel="Bielorrusia"/>
+                           <f:selectItem itemValue="Bolivia" itemLabel="Bolivia"/>
+                           <f:selectItem itemValue="Bosnia y Herzegovina" itemLabel="Bosnia y Herzegovina"/>
+                           <f:selectItem itemValue="Brasil" itemLabel="Brasil"/>
+                           <f:selectItem itemValue="Canadá" itemLabel="Canadá"/>
+                           <f:selectItem itemValue="Chile" itemLabel="Chile"/>
+                           <f:selectItem itemValue="China" itemLabel="China"/>
+                           <f:selectItem itemValue="Colombia" itemLabel="Colombia"/>
+                           <f:selectItem itemValue="Corea del Norte" itemLabel="Corea del Norte"/>
+                           <f:selectItem itemValue="Corea del Sur" itemLabel="Corea del Sur"/>
+                           <f:selectItem itemValue="Dinamarca" itemLabel="Dinamarca"/>
+                           <f:selectItem itemValue="España" itemLabel="España"/>
+                           <f:selectItem itemValue="Estados Unidos" itemLabel="Estados Unidos"/>
+                           <f:selectItem itemValue="Francia" itemLabel="Francia"/>
+                           <f:selectItem itemValue="Inglaterra" itemLabel="Inglaterra"/>
+                           <f:selectItem itemValue="Italia" itemLabel="Italia"/>
+                           <f:selectItem itemValue="Jamaica" itemLabel="Jamaica"/>
+                           <f:selectItem itemValue="México" itemLabel="México"/>
+                           <f:selectItem itemValue="Países Bajos" itemLabel="Países Bajos"/>
+                           <f:selectItem itemValue="Panamá" itemLabel="Panamá"/>
+                           <f:selectItem itemValue="Paraguay" itemLabel="Paraguay"/>
+                           <f:selectItem itemValue="Perú" itemLabel="Perú"/>
+                           <f:selectItem itemValue="Polonia" itemLabel="Polonia"/>
+                           <f:selectItem itemValue="Portugal" itemLabel="Portugal"/>
+                           <f:selectItem itemValue="Reino Unido" itemLabel="Reino Unido"/>
+                           <f:selectItem itemValue="Rusia" itemLabel="Rusia"/>
+                           <f:selectItem itemValue="Suecia" itemLabel="Suecia"/>
+                           <f:selectItem itemValue="Suiza" itemLabel="Suiza"/>
+                           <f:selectItem itemValue="Uruguay" itemLabel="Uruguay"/>
+                           <f:selectItem itemValue="Venezuela" itemLabel="Venezuela"/>
+                        </p:selectOneMenu>
+                     </div>
+                     <!--Instrumento-->
+                     <div class="form_group">
+                        <p:outputLabel>Instrumento que toca</p:outputLabel>
+                        <br/>
+                        <p:selectOneMenu value="#{artistasBean.artista.instrumento}" required="true" style="width: 100%">
+                           <f:selectItem itemLabel="Instrumento que toca" itemDisabled="true"/>
+                           <f:selectItem itemValue="Ninguno" itemLabel="Ninguno"/>
+                           <f:selectItem itemValue="Acordeón" itemLabel="Acordeón"/>
+                           <f:selectItem itemValue="Arpa" itemLabel="Arpa"/>
+                           <f:selectItem itemValue="Bajo Eléctrico" itemLabel="Bajo Eléctrico"/>
+                           <f:selectItem itemValue="Batería" itemLabel="Batería"/>
+                           <f:selectItem itemValue="Clarinete" itemLabel="Clarinete"/>
+                           <f:selectItem itemValue="Flauta" itemLabel="Flauta"/>
+                           <f:selectItem itemValue="Guitarra Acústica" itemLabel="Guitarra Acústica"/>
+                           <f:selectItem itemValue="Guitarra Eléctrica" itemLabel="Guitarra Eléctrica"/>
+                           <f:selectItem itemValue="Piano" itemLabel="Piano"/>
+                           <f:selectItem itemValue="Saxofón" itemLabel="Saxofón"/>
+                           <f:selectItem itemValue="Sintetizador" itemLabel="Sintetizador"/>
+                           <f:selectItem itemValue="Teclado" itemLabel="Teclado"/>
+                           <f:selectItem itemValue="Trompeta" itemLabel="Trompeta"/>
+                           <f:selectItem itemValue="Violín" itemLabel="Violín"/>
+                        </p:selectOneMenu>
+                     </div>
+                     
+                     <!--Estatura-->
+                     <div class="form_group">
+                        <p:outputLabel>Estatura</p:outputLabel>
+                        <p:inputText class="form_input"  value="#{artistasBean.artista.estatura}" placeholder="Estatura en metros" required="true"/>
+                        <span class="barra"></span>
+                     </div>
+                     <!--Boton Modificar-->
+                     <p:commandButton actionListener="#{artistasBean.modificar()}"
+                        value="Modificar Artista"
+                        update=":formMostrar" onclick="PF('dlgModificar').hide();">
+                     </p:commandButton>
+                  </h:form>
+               </p:dialog>
+               <a href="../Artista.xhtml" class="form_button1">Regresar</a>
+            </div>
+         </section>
+      </main>
+      <footer>
+         <div class="contenedor-footer">
+            <div class="content-foo">
+               <h4>Bastida Lemus</h4>
+               <p>Luis Manuel</p>
+            </div>
+            <div class="content-foo">
+               <h4>Gerónimo Herrera</h4>
+               <p>Raúl Gabriel</p>
+            </div>
+            <div class="content-foo">
+               <h4>Rodriguez Cruz</h4>
+               <p>Brian Alejandro</p>
+            </div>
+         </div>
+         <h2 class="titulo-final"> Proyecto | Interacción Hombre-Maquina</h2>
+      </footer>
+   </h:body>
+</html>

@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+   xmlns:p="http://primefaces.org/ui">
+   <head>
+      <title>Canciones</title>
+      <meta name="Pagina web de Musica" content="width=device-width, initial-scale=1" />
+      <link rel="stylesheet" href="css/style.css"/>
+      <link rel="shortcut icon" href="img/IconoPagina.png" type="image/x-icon"/>
+      <!--<link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,700,800&display=swap" rel="stylesheet"/>-->
+   </head>
+   <body>
+      <header>
+         <nav>
+            <a href="index.xhtml">Inicio</a>
+            <a href="Album.xhtml">Album</a>
+            <a href="Artista.xhtml">Artista</a>
+            <a href="Canciones.xhtml">Cancion</a>
+            <a href="Disquera.xhtml">Disquera</a>
+            <a href="Grupo.xhtml">Grupo</a>
+         </nav>
+         <section class="textos-header">
+            <h1>Biblioteca Musical</h1>
+            <h2>Proyecto Interacción Hombre-Maquina</h2>
+         </section><!--Forma para la cabecera de la pag, sale de la pag: https://smooth.ie/blogs/news/svg-wavey-transitions-between-sections-->
+         <div class="wave" style="height: 150px; overflow: hidden;" >
+            <svg viewBox="0 0 500 150" preserveAspectRatio="none" style="height: 100%; width: 100%;">
+               <path d="M0.00,49.98 C149.99,150.00 349.20,-49.98 500.00,49.98 L500.00,150.00 L0.00,150.00 Z" style="stroke: none; fill: #fff;"></path>
+            </svg>
+         </div>
+      </header>
+      <main>
+         <section class="clientes contenedor">
+            <div class="contenedor">
+               <h2 class="titulo">Canciones</h2>
+               <p class="descripcion">Selecciona lo que quieras realizar</p>
+               <div class="servicio-cont">
+                  <div class="servicio-ind">
+                     <a href="Contenido/altaCancion.xhtml"><img src="img/Nuevo.png" alt=""/></a>
+                     <h3>Insertar</h3>
+                     <p>Ingresar una nueva Cancion.</p>
+                  </div>
+                  <div class="servicio-ind">
+                     <a href="Contenido/ModificaCancion.xhtml"><img src="img/Editar.png" alt=""/></a>
+                     <h3>Modificar</h3>
+                     <p>Modificar alguna Cancion.</p>
+                  </div>
+                  <div class="servicio-ind">
+                     <a href="Contenido/EliminaCancion.xhtml"><img src="img/Eliminar.png" alt=""/></a>
+                     <h3>Eliminar</h3>
+                     <p>Eliminar alguna Cancion.</p>
+                  </div>
+               </div>
+
+               <div class="servicio-cont">
+                  <div class="servicio-ind">
+                     <a href="Contenido/ListaCancion.xhtml"><img src="img/Lista.png" alt=""/></a>
+                     <h3>Lista</h3>
+                     <p>Ver la lista de todas las Canciones ingresadas.</p>
+                  </div>
+                  <div class="servicio-ind">
+                     <a href="Contenido/BuscaCancion.xhtml"><img src="img/Buscar.png" alt=""/></a>
+                     <h3>Buscar</h3>
+                     <p>Buscar una Cancion.</p>
+                  </div>
+               </div>
+            </div>
+         </section>
+         <a href="index.xhtml" class="button_Regreso">Regresar</a>
+      </main>
+      <footer>
+         <div class="contenedor-footer">
+            <div class="content-foo">
+               <h4>Bastida Lemus</h4>
+               <p>Luis Manuel</p>
+            </div>
+            <div class="content-foo">
+               <h4>Gerónimo Herrera</h4>
+               <p>Raúl Gabriel</p>
+            </div>
+            <div class="content-foo">
+               <h4>Rodriguez Cruz</h4>
+               <p>Brian Alejandro</p>
+            </div>
+         </div>
+         <h2 class="titulo-final"> Proyecto | Interacción Hombre-Maquina</h2>
+      </footer>
+   </body>
+</html>
